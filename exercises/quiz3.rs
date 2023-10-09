@@ -16,10 +16,23 @@
 //
 // Execute `rustlings hint quiz3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// I AM DONE
 
+pub enum Grade {
+    Numerical(f32),
+    Alphabetic(String),
+}
+
+impl std::fmt::Display for Grade {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        match self {
+            Grade::Numerical(n) => write!(f, "{}", n),
+            Grade::Alphabetic(s) => write!(f, "{}", s),
+        }
+    }
+}
 pub struct ReportCard {
-    pub grade: f32,
+    pub grade: Grade,
     pub student_name: String,
     pub student_age: u8,
 }
@@ -38,7 +51,7 @@ mod tests {
     #[test]
     fn generate_numeric_report_card() {
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: Grade::Numerical(2.1),
             student_name: "Tom Wriggle".to_string(),
             student_age: 12,
         };
@@ -52,7 +65,7 @@ mod tests {
     fn generate_alphabetic_report_card() {
         // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: Grade::Alphabetic("A+".to_string()),
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
